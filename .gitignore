@@ -1,6 +1,6 @@
 data/
 analyses/
-misc_files/
+misc_files/busco_downloads
 renv/
 data.zip
 DS_Store
