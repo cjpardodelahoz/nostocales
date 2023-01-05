@@ -1,5 +1,8 @@
 data/
 analyses/
+misc_files/
+renv/
 data.zip
-./.DS_Store
-./README
+DS_Store
+README
+.Rproj.user
