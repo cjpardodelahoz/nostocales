@@ -98,8 +98,8 @@ loci_names_198 <- rownames(loci_198)
 BUSCO_result_num_trimmed <- BUSCO_result_num[loci_names_198, taxa_names_694]
 
 # Save list of kept taxa and loci
-write(taxa_names_694, file = "misc_files/taxa_694.txt")
-write(loci_names_198, file = "misc_files/BUSCO_cyanodb10_trimmed_codes.txt")
+write(taxa_names_694, file = "misc_files/taxa_passed_qc.txt")
+write(loci_names_198, file = "misc_files/L746.txt")
 
 # Check taxon and loci sampling on pruned dataset
 hist(rowSums(BUSCO_result_num_trimmed), main = NULL, xlab = "number of taxa")
