@@ -14,3 +14,4 @@ sbatch busco_all_cyanodb10.sh
 # distribution of taxa and loci.
 Rscript scripts/filter_taxa_and_loci_all.R
 # Get sequence files for each of the busco loci
+Rscript scripts/sort_busco_seqs_all_cyanodb10.R
