@@ -19,5 +19,5 @@ Rscript scripts/sort_busco_seqs_all_cyanodb10.R
 # This will write the alignments to analyses/prelim/alignments/single
 sbatch scripts/mafft_all_cyanodb10_aa.sh
 # Concatenate the aa alignments
-# This will write the concatenated alignment to analyses/prelim/alignments/concat/concat.faa
+# This will write the concatenated alignment to analyses/prelim/alignments/concat/concat_aa.phy
 sbatch scripts/concatenate_all_cyanodb10.sh

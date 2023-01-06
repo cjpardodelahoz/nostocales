@@ -15,5 +15,6 @@ aln_dir=analyses/prelim/alignments/single/
 aln_paths=$(cat misc_files/busco_ids_cyanodb10.txt | sed "s|^|${aln_dir}|")
 # Concatenate aa alignments with AMAS
 AMAS.py concat -i ${aln_paths} \
--f fasta -d aa -p analyses/prelim/alignments/concat/gene_partition_ng_na \
---part-format raxml --concat-out analyses/prelim/alignments/concat/concat.faa
+ -f fasta -d aa -p analyses/prelim/alignments/concat/gene_partition_ng_na \
+ --part-format raxml --out-format phylip \
+ --concat-out analyses/prelim/alignments/concat/concat_aa.phy
