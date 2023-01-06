@@ -1,8 +1,6 @@
 #!/bin/bash
 
-####### GENOME QC #######
-
-# Preliminary phylogeny (Fig. S1) and dataset L746
+####### GENOME QC AND PRELIMINARY PHYLOGENY (FIG. S1) #######
 
 # Run busco on all 220 genomes with the cyanodb10 (conserved on cyanobacteria)
 sbatch busco_all_cyanodb10.sh
@@ -15,3 +13,6 @@ sbatch busco_all_cyanodb10.sh
 Rscript scripts/filter_taxa_and_loci_all.R
 # Get sequence files for each of the busco loci
 Rscript scripts/sort_busco_seqs_all_cyanodb10.R
+# AA alignment
+
+#
