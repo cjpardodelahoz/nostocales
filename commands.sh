@@ -12,7 +12,10 @@ sbatch busco_all_cyanodb10.sh
 # distribution of taxa and loci.
 Rscript scripts/filter_taxa_and_loci_all.R
 # Get sequence files for each of the busco loci
+# This script will create the busco sequence files in analyses/prelim/seqs
+# MOVE by_taxon TO analyses/genome_qc/busco/all_cyanodb10/by_taxon
 Rscript scripts/sort_busco_seqs_all_cyanodb10.R
-# AA alignment
-
+# AA alignments
+# This will write the alignments to analyses/prelim/alignments/single
+sbatch scripts/mafft_all_cyanodb10_aa.sh
 #
