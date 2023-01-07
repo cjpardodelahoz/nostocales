@@ -21,3 +21,6 @@ sbatch scripts/mafft_all_cyanodb10_aa.sh
 # Concatenate the aa alignments
 # This will write the concatenated alignment to analyses/prelim/alignments/concat/concat_aa.phy
 sbatch scripts/concatenate_all_cyanodb10.sh
+# Infer preliminary ml concatenated tree with RAxML
+# This will write the tree to analyses/prelim/trees/concat/concat_aa.tree
+sbatch scripts/prelim_concat_tree.sh
