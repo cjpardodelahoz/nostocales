@@ -12,7 +12,7 @@ export PATH=/hpc/group/bio1/carlos/apps/AMAS/amas:${PATH}
 mkdir -p analyses/prelim/alignments/concat
 # Variable with paths to single aa alignments
 aln_dir=analyses/prelim/alignments/single/
-aln_paths=$(cat misc_files/busco_ids_cyanodb10.txt | sed "s|^|${aln_dir}|")
+aln_paths=$(cat misc_files/busco_ids_cyanodb10.txt | sed "s|^|${aln_dir}|" | sed "s|$|_aln.faa|")
 # Concatenate aa alignments with AMAS
 AMAS.py concat -i ${aln_paths} \
  -f fasta -d aa -p analyses/prelim/alignments/concat/gene_partition_ng_na \
