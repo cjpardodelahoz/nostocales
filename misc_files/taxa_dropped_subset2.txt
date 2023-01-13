@@ -1,0 +1,14 @@
+Tolypothrix_sp_NIES_4075
+Fischerella_thermalis_WC114
+Fischerella_sp_NIES_4106
+Fischerella_sp_PCC_9605
+Chlorogloeopsis_fritschii_PCC_9212
+Scytonema_sp_HK_05_v2
+Mastigocladopsis_repens_PCC_10914
+Nostocales_cyanobacterium_HT_58_2
+Tolypothrix_bouteillei_VB521301
+Dictyo3444.bin.3
+Chroococcidiopsis_thermalis_PCC_7203
+Peltula.bin.10
+Synechocystis_sp_PCC_7509
+Gloeocapsa_sp_PCC_7428
