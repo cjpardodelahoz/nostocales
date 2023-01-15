@@ -5,11 +5,11 @@ library(tidyverse)
 library(phylotools)
 
 # Load label reference table
-ref_table <- readr::read_csv(file = "analyses/ancestral_ne/full_run_1/clade_taxon_assignments.csv") %>%
+ref_table <- readr::read_csv(file = "analyses/ancestral_ne/full_run_2/clade_taxon_assignments.csv") %>%
   tidyr::drop_na() %>%
   dplyr::select(1:2)
 # List of sequence files to rename
-seq_paths <- list.files(path = "analyses/ancestral_ne/full_run_1/seqs", 
+seq_paths <- list.files(path = "analyses/ancestral_ne/full_run_2/seqs", 
                         pattern = "subset2.fna", full.names = T)
 # Loop thorugh the seqs and rename them
 for (seq_in in seq_paths) {
