@@ -1,6 +1,6 @@
 #!/bin/bash
 
-####### GENOME QC AND PRELIMINARY PHYLOGENY (FIG. S1) #######
+####### GENOME QC AND PRELIMINARY PHYLOGENY (FIG. S1) ########
 
 # Run busco on all 220 genomes with the cyanodb10 (conserved on cyanobacteria)
 sbatch busco_all_cyanodb10.sh
@@ -24,3 +24,12 @@ sbatch scripts/concatenate_all_cyanodb10.sh
 # Infer preliminary ml concatenated tree with RAxML
 # This will write the tree to analyses/prelim/trees/concat/concat_aa.tree
 sbatch scripts/prelim_concat_tree.sh
+
+####### ALIGNMENTS, GENE AND SPECIES TREES FOR SUBSET 1 (55 TAXA) ########
+
+# L31
+
+# AA alignments
+# This will write the alignments to analyses/L31/alignments/single
+sbatch scripts/mafft_L31_subset0_aa.sh
+# NA alignments
