@@ -36,4 +36,14 @@ sbatch scripts/mafft_L31_subset0_aa.sh
 # This will align the nucleotides using the amino acid aligment as a guideline
 # and will write the alignments to analyses/L31/alignments/single
 sbatch scripts/pal2nal_L31_subset0.sh
+# Trim gaps from alignments using trimal
+sbatch scripts/trimal_L31_subset0_ng.sh
+# Remove trimal crap from headers
+sbatch scripts/fix_headers_L31_subset0.sh
+# Get codon partition file for nucleotide alignments
+scripts/get_codon_partition_L31_subset0.sh
+# Run ML gene trees with iqtree
+sbatch scripts/ml_gene_trees_L31_subset0_aa.sh
+sbatch scripts/ml_gene_trees_L31_subset0_na.sh
+
 

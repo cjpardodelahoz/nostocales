@@ -9,6 +9,8 @@
 
 # PAL2NAL on path
 export PATH=/hpc/group/bio1/carlos/apps/pal2nal.v14:${PATH}
+# Variable with loci file names
+locus=$(cat misc_files/L31.txt | sed -n ${SLURM_ARRAY_TASK_ID}p)
 # Align nucleotides according to amino acid alignments
 pal2nal.pl analyses/L31/alignments/single/${locus}_aln.faa \
  analyses/L31/seqs/${locus}.fna -output fasta -codontable 11 > \
