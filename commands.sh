@@ -45,5 +45,15 @@ scripts/get_codon_partition_L31_subset0.sh
 # Run ML gene trees with iqtree
 sbatch scripts/ml_gene_trees_L31_subset0_aa.sh
 sbatch scripts/ml_gene_trees_L31_subset0_na.sh
+# Concatenate sequences
+sbatch scripts/concatenate_L31_subset0.sh
+# Get codon partition file for the concatenated alignments
+sbatch scripts/get_codon_partition_concat_L31.sh
+# Run concatenated trees
+sbatch scripts/concat_pf_set103.sh
+sbatch scripts/concat_tree_set103.sh
+# Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
+sbatch scripts/astral10_set103.sh
+
 
 
