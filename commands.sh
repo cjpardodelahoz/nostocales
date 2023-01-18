@@ -32,4 +32,8 @@ sbatch scripts/prelim_concat_tree.sh
 # AA alignments
 # This will write the alignments to analyses/L31/alignments/single
 sbatch scripts/mafft_L31_subset0_aa.sh
-# NA alignments
+# NA alignments with PAL2NAL
+# This will align the nucleotides using the amino acid aligment as a guideline
+# and will write the alignments to analyses/L31/alignments/single
+sbatch scripts/pal2nal_L31_subset0.sh
+
