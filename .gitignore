@@ -1,6 +1,7 @@
 data/
 analyses/
 misc_files/busco_downloads
+misc_files/nostocales_busco_blastdb*
 renv/
 !renv/activate.R
 data.zip
