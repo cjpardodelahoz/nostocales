@@ -58,7 +58,8 @@ sbatch scripts/L31_concat_pf_ng_na.sh
 # Infer ml concat tree for na using partitions from pf
 sbatch scripts/L31_concat_pfml_ng_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
-sbatch scripts/astral10_set103.sh
+sbatch scripts/L31_astral10_ng_na.sh
+sbatch scripts/L31_astral10_ng_aa.sh
 
 
 
