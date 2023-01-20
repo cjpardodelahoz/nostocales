@@ -48,10 +48,12 @@ sbatch scripts/ml_gene_trees_L31_subset0_na.sh
 # Concatenate sequences
 sbatch scripts/concatenate_L31_subset0.sh
 # Get codon partition file for the concatenated alignments
-sbatch scripts/get_codon_partition_concat_L31.sh
-# Run concatenated trees
-sbatch scripts/concat_pf_set103.sh
-sbatch scripts/concat_tree_set103.sh
+scripts/get_codon_partition_concat_ng_L31.sh
+# Infer aa concatenated guide tree for PMSF
+sbatch scripts/L31_concat_guide_ng.sh
+# Infer aa concatenated PMSF tree
+sbatch scripts/L31_concat_pmsf_ng.sh
+
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
 sbatch scripts/astral10_set103.sh
 
