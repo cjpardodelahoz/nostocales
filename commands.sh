@@ -53,7 +53,10 @@ scripts/get_codon_partition_concat_ng_L31.sh
 sbatch scripts/L31_concat_guide_ng.sh
 # Infer aa concatenated PMSF tree
 sbatch scripts/L31_concat_pmsf_ng.sh
-
+# Run partition finder for na concat alignment within iqtree
+sbatch scripts/L31_concat_pf_ng_na.sh
+# Infer ml concat tree for na using partitions from pf
+sbatch scripts/L31_concat_pfml_ng_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
 sbatch scripts/astral10_set103.sh
 
