@@ -11,4 +11,4 @@ for line in $(sed 's/\ /./g' analyses/L31/alignments/concat/na/ng_na_Gpart) ; do
 	printf "DNA, 1st_${locus} = ${start}-${fin}\n"
 	printf "DNA, 2nd_${locus} = $(($start + 1))-${fin}\n"
 	printf "DNA, 3rd_${locus} = $(($start + 2))-${fin}\n"
-done | sed -e 's/$/\\3/' > analyses/L31/alignments/concat/na/ng_na_Gpart
+done | sed -e 's/$/\\3/' > analyses/L31/alignments/concat/na/ng_na_Cpart
