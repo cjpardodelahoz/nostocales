@@ -20,7 +20,7 @@ sort_busco_seqs(sample_ids = sample_ids,
 # Get busco aa seq files
 sort_busco_seqs(sample_ids = sample_ids,
                 busco_out_dir = "analyses/genome_qc/busco/all_nostoacalesdb10/by_taxon", 
-                busco_db = "run_cyanobacteria_odb10", 
+                busco_db = "run_nostocales_odb10", 
                 out_file_name = "full_table.tsv",
                 data_type = "AA",
                 out_dir = "analyses/L1648/seqs", 
