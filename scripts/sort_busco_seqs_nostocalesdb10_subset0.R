@@ -16,7 +16,7 @@ sort_busco_seqs(sample_ids = sample_ids,
                 out_file_name = "full_table.tsv",
                 data_type = "DNA",
                 out_dir = "analyses/L1648/seqs", 
-                busco_ids_file = "misc_files/L1648.txt")
+                busco_ids_file = "misc_files/busco_ids_nostocalesdb10.txt")
 # Get busco aa seq files
 sort_busco_seqs(sample_ids = sample_ids,
                 busco_out_dir = "analyses/genome_qc/busco/all_nostoacalesdb10/by_taxon", 
@@ -24,4 +24,4 @@ sort_busco_seqs(sample_ids = sample_ids,
                 out_file_name = "full_table.tsv",
                 data_type = "AA",
                 out_dir = "analyses/L1648/seqs", 
-                busco_ids_file = "misc_files/L1648.txt")
+                busco_ids_file = "misc_files/busco_ids_nostocalesdb10.txt")
