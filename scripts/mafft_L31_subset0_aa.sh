@@ -14,7 +14,7 @@ module load NCBI-BLAST/2.7.1
 # Variable with loci file names
 locus=$(cat misc_files/L31.txt | sed -n ${SLURM_ARRAY_TASK_ID}p)
 # Align aa seqs with mafft
-mafft-homologs.rb -l -d misc_files/nostocales_busco_blastdb -w \
+mafft-homologs.rb -l -d databases/nostocales_busco_blastdb -w \
  -o '--dash --globalpair --maxiterate 100 --thread 1 --originalseqonly' \
  analyses/L31/seqs/${locus}.faa > \
  analyses/L31/alignments/single/${locus}_aln.faa
