@@ -166,11 +166,11 @@ sbatch busco_all_nostocalesdb10.sh
 # Use busco results to taxa by completeness (90% threshold) and to generate L1648
 # This script writes two files:
 # misc_files/L1648.txt          The list of busco loci part of the L1648 dataset
-# It also contains code fo a couple of histograms (not saved) showing the 
+# It also contains code for a couple of histograms showing the 
 # distribution of taxa and loci.
-Rscript scripts/filter_loci_nostocalesdb10.R
+Rscript scripts/filter_loci_nostocalesdb10.R # NEEDS TO BE TESTED WHEN I COPY THE SUMMARY FILE
 # Get sequence files for each of the busco loci
-# This script will create the busco sequence files in analyses/prelim/seqs
+# This script will create the busco sequence files in analyses/L1648/seqs
 # It will run faster with higher memory (peak at ~32 GB RAM)
-Rscript scripts/sort_busco_seqs_all_cyanodb10.R
+Rscript scripts/sort_busco_seqs_all_cyanodb10.R # NEEDS TO BE TESTED WHEN I COPY THE BUSCO OUTPUT
 
