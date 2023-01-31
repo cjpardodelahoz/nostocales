@@ -134,40 +134,40 @@ rm misc_files/L746.txt.bak
 sbatch scripts/mafft_L746_subset0_aa.sh
 # NA alignments with PAL2NAL
 # This will align the nucleotides using the amino acid aligment as a guideline
-# and will write the alignments to analyses/L70/alignments/single
+# and will write the alignments to analyses/L746/alignments/single
 sbatch scripts/pal2nal_L746_subset0.sh
 # Trim gaps from alignments using trimal
-# This will write trimmmed alignments to analyses/L70/alignments/single
+# This will write trimmmed alignments to analyses/L746/alignments/single
 sbatch scripts/trimal_L746_subset0_ng.sh
 # Remove trimal crap from headers
 sbatch scripts/fix_headers_L746_subset0.sh
 # Get codon partition file for nucleotide alignments
-# Codon partition files will be written to analyses/L70/alignments/single/${locus}_ng_Cpart
+# Codon partition files will be written to analyses/L746/alignments/single/${locus}_ng_Cpart
 scripts/get_codon_partition_L746_subset0.sh
 # Run ML gene trees with iqtree
-# All iqtree output will be written to analyses/L70/trees/single/aa|na
-# The tree file will be analyses/L70/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+# All iqtree output will be written to analyses/L746/trees/single/aa|na
+# The tree file will be analyses/L746/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
 sbatch scripts/ml_gene_trees_L746_subset0_aa.sh
 sbatch scripts/ml_gene_trees_L746_subset0_na.sh
 # Concatenate sequences
-# Concatenated alignments will be in analyses/L70/alignments/concat
+# Concatenated alignments will be in analyses/L746/alignments/concat
 sbatch scripts/concatenate_L746_subset0.sh
 # Get codon partition file for the na concatenated alignments
-# Codon partitions will be in analyses/L70/alignments/concat/na/ng_na_Cpart
+# Codon partitions will be in analyses/L746/alignments/concat/na/ng_na_Cpart
 scripts/get_codon_partition_concat_ng_L746.sh
 # Infer aa concatenated guide tree for PMSF
 sbatch scripts/L746_concat_guide_ng.sh
 # Infer aa concatenated PMSF tree
-# The pmsf tree will be in analyses/L70/trees/concat/aa/ng_concat_pmsf.treefile
+# The pmsf tree will be in analyses/L746/trees/concat/aa/ng_concat_pmsf.treefile
 sbatch scripts/L746_concat_pmsf_ng.sh
 # Run partition finder for na concat alignment within iqtree
-# The partition and model file will be in analyses/L70/trees/concat/na/ng_concat.best_scheme.nex
+# The partition and model file will be in analyses/L746/trees/concat/na/ng_concat.best_scheme.nex
 sbatch scripts/L746_concat_pf_ng_na.sh
 # Infer ml concat tree for na using partitions from pf
-# The tree will be in analyses/L70/trees/concat/na/ng_concat_pfml.treefile
+# The tree will be in analyses/L746/trees/concat/na/ng_concat_pfml.treefile
 sbatch scripts/L746_concat_pfml_ng_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
-# The astral trees wimm be in analyses/L70/trees/astral/aa|na/ng_astral.tre
+# The astral trees wimm be in analyses/L746/trees/astral/aa|na/ng_astral.tre
 sbatch scripts/L746_astral10_ng_na.sh
 sbatch scripts/L746_astral10_ng_aa.sh
 
@@ -193,43 +193,46 @@ done
 # Add the "selected_55" suffix to the seqs and the loci identifiers
 sed -i.bak "s|$|_selected_55|" misc_files/L1648.txt
 # AA alignments
-# This will write the alignments to analyses/L746/alignments/single
-sbatch scripts/mafft_L746_subset0_aa.sh
+# This will write the alignments to analyses/L1648/alignments/single
+sbatch scripts/mafft_L1648_subset0_aa.sh
 # NA alignments with PAL2NAL
 # This will align the nucleotides using the amino acid aligment as a guideline
-# and will write the alignments to analyses/L70/alignments/single
-sbatch scripts/pal2nal_L746_subset0.sh
+# and will write the alignments to analyses/L1648/alignments/single
+sbatch scripts/pal2nal_L1648_subset0.sh
 # Trim gaps from alignments using trimal
-# This will write trimmmed alignments to analyses/L70/alignments/single
-sbatch scripts/trimal_L746_subset0_ng.sh
+# This will write trimmmed alignments to analyses/L1648/alignments/single
+sbatch scripts/trimal_L1648_subset0_ng.sh
+sbatch scripts/trimal_L1648_subset0_strict.sh
+sbatch scripts/clipkit_L1648_subset0_kcg.sh
+sbatch scripts/clipkit_L1648_subset0_kcg2.sh
 # Remove trimal crap from headers
-sbatch scripts/fix_headers_L746_subset0.sh
+sbatch scripts/fix_headers_L1648_subset0.sh
 # Get codon partition file for nucleotide alignments
-# Codon partition files will be written to analyses/L70/alignments/single/${locus}_ng_Cpart
-scripts/get_codon_partition_L746_subset0.sh
+# Codon partition files will be written to analyses/L1648/alignments/single/${locus}_ng_Cpart
+scripts/get_codon_partition_L1648_subset0.sh
 # Run ML gene trees with iqtree
-# All iqtree output will be written to analyses/L70/trees/single/aa|na
-# The tree file will be analyses/L70/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
-sbatch scripts/ml_gene_trees_L746_subset0_aa.sh
-sbatch scripts/ml_gene_trees_L746_subset0_na.sh
+# All iqtree output will be written to analyses/L1648/trees/single/aa|na
+# The tree file will be analyses/L1648/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+sbatch scripts/ml_gene_trees_L1648_subset0_aa.sh
+sbatch scripts/ml_gene_trees_L1648_subset0_na.sh
 # Concatenate sequences
-# Concatenated alignments will be in analyses/L70/alignments/concat
-sbatch scripts/concatenate_L746_subset0.sh
+# Concatenated alignments will be in analyses/L1648/alignments/concat
+sbatch scripts/concatenate_L1648_subset0.sh
 # Get codon partition file for the na concatenated alignments
-# Codon partitions will be in analyses/L70/alignments/concat/na/ng_na_Cpart
-scripts/get_codon_partition_concat_ng_L746.sh
+# Codon partitions will be in analyses/L1648/alignments/concat/na/ng_na_Cpart
+scripts/get_codon_partition_concat_ng_L1648.sh
 # Infer aa concatenated guide tree for PMSF
 sbatch scripts/L746_concat_guide_ng.sh
 # Infer aa concatenated PMSF tree
-# The pmsf tree will be in analyses/L70/trees/concat/aa/ng_concat_pmsf.treefile
+# The pmsf tree will be in analyses/L1648/trees/concat/aa/ng_concat_pmsf.treefile
 sbatch scripts/L746_concat_pmsf_ng.sh
 # Run partition finder for na concat alignment within iqtree
-# The partition and model file will be in analyses/L70/trees/concat/na/ng_concat.best_scheme.nex
+# The partition and model file will be in analyses/L1648/trees/concat/na/ng_concat.best_scheme.nex
 sbatch scripts/L746_concat_pf_ng_na.sh
 # Infer ml concat tree for na using partitions from pf
-# The tree will be in analyses/L70/trees/concat/na/ng_concat_pfml.treefile
+# The tree will be in analyses/L1648/trees/concat/na/ng_concat_pfml.treefile
 sbatch scripts/L746_concat_pfml_ng_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
-# The astral trees wimm be in analyses/L70/trees/astral/aa|na/ng_astral.tre
+# The astral trees wimm be in analyses/L1648/trees/astral/aa|na/ng_astral.tre
 sbatch scripts/L746_astral10_ng_na.sh
 sbatch scripts/L746_astral10_ng_aa.sh
