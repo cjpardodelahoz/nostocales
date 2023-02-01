@@ -3,8 +3,8 @@
 #SBATCH --array=1-1648
 #SBATCH --mem-per-cpu=4G  # adjust as needed
 #SBATCH -c 2 # number of threads per process
-#SBATCH --output=log/ml_gene_trees_L1648_subset0_ng_na.%A_%a.out
-#SBATCH --error=log/ml_gene_trees_L1648_subset0_ng_na.%A_%a.err
+#SBATCH --output=log/ml_gene_trees_L1648_subset0_na_ng.%A_%a.out
+#SBATCH --error=log/ml_gene_trees_L1648_subset0_na_ng.%A_%a.err
 #SBATCH --partition=scavenger
 
 # IQ-tree module
