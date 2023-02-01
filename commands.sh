@@ -234,16 +234,22 @@ sbatch scripts/ml_gene_trees_L1648_subset0_aa_strict_sho.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_aa_kcg_sho.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_aa_kcg2_sho.sh
 # Concatenate sequences
-# Concatenated alignments will be in analyses/L1648/alignments/concat
+# Concatenated alignments will be in analyses/L1648/alignments/concat/ng|strict|kcg|kcg2
 sbatch scripts/concatenate_L1648_subset0.sh
-# Get codon partition file for the na concatenated alignments
-# Codon partitions will be in analyses/L1648/alignments/concat/na/ng_na_Cpart
+# Get codon partition file for the na concatenated alignment
+# Codon partitions will be in analyses/L1648/alignments/concat/ng/na/ng_na_Cpart
 scripts/get_codon_partition_concat_ng_L1648.sh
-# Infer aa concatenated guide tree for PMSF
-sbatch scripts/L746_concat_guide_ng.sh
-# Infer aa concatenated PMSF tree
-# The pmsf tree will be in analyses/L1648/trees/concat/aa/ng_concat_pmsf.treefile
-sbatch scripts/L746_concat_pmsf_ng.sh
+# Infer aa concatenated guide trees for PMSF
+sbatch scripts/L1648_concat_guide_ng.sh
+sbatch scripts/L1648_concat_guide_strict.sh
+sbatch scripts/L1648_concat_guide_kcg.sh
+sbatch scripts/L1648_concat_guide_kcg2.sh
+# Infer aa concatenated PMSF trees
+# The pmsf tree will be in analyses/L1648/trees/concat/ng/aa/ng_concat_pmsf.treefile
+sbatch scripts/L1648_concat_pmsf_ng.sh
+sbatch scripts/L1648_concat_pmsf_strict.sh
+sbatch scripts/L1648_concat_pmsf_kcg.sh
+sbatch scripts/L1648_concat_pmsf_kcg2.sh
 # Run partition finder for na concat alignment within iqtree
 # The partition and model file will be in analyses/L1648/trees/concat/na/ng_concat.best_scheme.nex
 sbatch scripts/L746_concat_pf_ng_na.sh
