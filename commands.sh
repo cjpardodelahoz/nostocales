@@ -229,10 +229,10 @@ sbatch scripts/ml_gene_trees_L1648_subset0_aa_kcg2.sh
 # All following searches were done with site-homogeneous models (sho)
 # All iqtree output will be written to analyses/L1648/trees/single/ng|strict|kcg|kcg2/aa/
 # The tree file will be analyses/L1648/trees/single/ng/aa/${locus}_seelcted_55_ng_sho.treefile
-
-
-sbatch scripts/ml_gene_trees_L1648_subset0_aa.sh
-sbatch scripts/ml_gene_trees_L1648_subset0_na.sh
+sbatch scripts/ml_gene_trees_L1648_subset0_aa_ng_sho.sh
+sbatch scripts/ml_gene_trees_L1648_subset0_aa_strict_sho.sh
+sbatch scripts/ml_gene_trees_L1648_subset0_aa_kcg_sho.sh
+sbatch scripts/ml_gene_trees_L1648_subset0_aa_kcg2_sho.sh
 # Concatenate sequences
 # Concatenated alignments will be in analyses/L1648/alignments/concat
 sbatch scripts/concatenate_L1648_subset0.sh
