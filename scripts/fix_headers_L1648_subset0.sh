@@ -11,3 +11,5 @@ locus=$(cat misc_files/L1648.txt | sed -n ${SLURM_ARRAY_TASK_ID}p)
 
 sed -i 's/\s.*//' analyses/L1648/alignments/single/${locus}_ng.faa
 sed -i 's/\s.*//' analyses/L1648/alignments/single/${locus}_ng.fna
+sed -i 's/\s.*//' analyses/L1648/alignments/single/${locus}_strict.faa
+sed -i 's/\s.*//' analyses/L1648/alignments/single/${locus}_strict.fna

@@ -209,10 +209,12 @@ sbatch scripts/clipkit_L1648_subset0_kcg2.sh
 sbatch scripts/fix_headers_L1648_subset0.sh
 # Get codon partition file for nucleotide alignments
 # Codon partition files will be written to analyses/L1648/alignments/single/${locus}_ng_Cpart
-scripts/get_codon_partition_L1648_subset0.sh
-# Run ML gene trees with iqtree
-# All iqtree output will be written to analyses/L1648/trees/single/aa|na
+scripts/get_codon_partition_L1648_subset0_ng.sh
+# Run nucleotide ML gene trees with iqtree
+# All iqtree output will be written to analyses/L1648/trees/single/na/ng|strict|kcg|kcg2
 # The tree file will be analyses/L1648/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+sbatch scripts/ml_gene_trees_L1648_subset0_na.sh
+
 sbatch scripts/ml_gene_trees_L1648_subset0_aa.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na.sh
 # Concatenate sequences
