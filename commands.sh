@@ -254,3 +254,14 @@ sbatch scripts/L746_concat_pfml_ng_na.sh
 # The astral trees wimm be in analyses/L1648/trees/astral/aa|na/ng_astral.tre
 sbatch scripts/L746_astral10_ng_na.sh
 sbatch scripts/L746_astral10_ng_aa.sh
+
+####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
+
+# Compile ModelFinder output from the L1648 amino acid datasets. This will
+# extract the ModelFinder output table from the IQ-Tree log for each locus and
+# write it into a file in modelfinder_out/
+scripts/compile_mf_outputs.sh
+# Compare the BIC of the best site-heterogeneous and the best site-homogeneous
+# models for each locus in the L1648+ng amino acid datasets and generate
+# Figure S4
+Rscript scripts/bic_diff_plot.R
