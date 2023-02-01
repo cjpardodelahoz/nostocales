@@ -199,7 +199,7 @@ sbatch scripts/mafft_L1648_subset0_aa.sh
 # This will align the nucleotides using the amino acid aligment as a guideline
 # and will write the alignments to analyses/L1648/alignments/single
 sbatch scripts/pal2nal_L1648_subset0.sh
-# Trim gaps from alignments using trimal
+# Trim alignments using trimal and clipkit
 # This will write trimmmed alignments to analyses/L1648/alignments/single
 sbatch scripts/trimal_L1648_subset0_ng.sh
 sbatch scripts/trimal_L1648_subset0_strict.sh
@@ -250,6 +250,17 @@ sbatch scripts/L1648_concat_pmsf_ng.sh
 sbatch scripts/L1648_concat_pmsf_strict.sh
 sbatch scripts/L1648_concat_pmsf_kcg.sh
 sbatch scripts/L1648_concat_pmsf_kcg2.sh
+# Run partition finder for aa concat alignment within iqtree with site-homogeneous
+# models only
+sbatch scripts/L1648_concat_pf_ng_aa.sh
+sbatch scripts/L1648_concat_pf_strict_aa.sh
+sbatch scripts/L1648_concat_pf_kcg_aa.sh
+sbatch scripts/L1648_concat_pf_kcg2_aa.sh
+# Run concatenated partitioned trees with site-homogeneous models
+sbatch scripts/L1648_concat_pfml_ng_aa.sh
+sbatch scripts/L1648_concat_pfml_strict_aa.sh
+sbatch scripts/L1648_concat_pfml_kcg_aa.sh
+sbatch scripts/L1648_concat_pfml_kcg2_aa.sh
 # Run partition finder for na concat alignment within iqtree
 # The partition and model file will be in analyses/L1648/trees/concat/na/ng_concat.best_scheme.nex
 sbatch scripts/L746_concat_pf_ng_na.sh
