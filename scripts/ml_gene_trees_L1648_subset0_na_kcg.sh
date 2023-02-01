@@ -13,6 +13,6 @@ module load IQ-TREE/1.6.12
 locus=$(cat misc_files/L1648.txt | sed -n ${SLURM_ARRAY_TASK_ID}p)
 # Run Iq-tree
 iqtree -nt 2 \
- -pre analyses/L1648/trees/single/na/${locus}_kcg \
+ -pre analyses/L1648/trees/single/kcg/na/${locus}_kcg \
  -s analyses/L1648/alignments/single/${locus}_kcg.fna \
  -m MFP -bb 1000 -bnni

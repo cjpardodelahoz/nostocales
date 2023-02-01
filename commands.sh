@@ -212,17 +212,22 @@ sbatch scripts/fix_headers_L1648_subset0.sh
 scripts/get_codon_partition_L1648_subset0_ng.sh
 # Run nucleotide ML gene trees with iqtree
 # All these searches were done with site-homogeneous models (sho)
-# All nucleotide iqtree output will be written to analyses/L1648/trees/single/na/
-# The tree file will be analyses/L1648/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+# All nucleotide iqtree output will be written to analyses/L1648/trees/single/ng|strict|kcg|kcg2/na/
+# The tree file will be analyses/L1648/trees/single/ng/na/${locus}_seelcted_55_ng.treefile
 sbatch scripts/ml_gene_trees_L1648_subset0_na_ng.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na_strict.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na_kcg.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na_kcg2.sh
 # Run amino acid ML gene trees with iqtree
+# All these searches were done considering site-heterogeneous models
+# All iqtree output will be written to analyses/L1648/trees/single/aa/
+# The tree file will be analyses/L1648/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+sbatch scripts/ml_gene_trees_L1648_subset0_aa_ng.sh
+
+# Run amino acid ML gene trees with iqtree
 # All these searches were done with site-homogeneous models (sho)
 # All iqtree output will be written to analyses/L1648/trees/single/aa/
 # The tree file will be analyses/L1648/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
-
 
 sbatch scripts/ml_gene_trees_L1648_subset0_aa.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na.sh
