@@ -269,14 +269,16 @@ sbatch scripts/L1648_concat_pf_kcg_na.sh
 sbatch scripts/L1648_concat_pf_kcg2_na.sh
 # Infer ml concat tree for na using partitions from pf
 # The tree will be in analyses/L1648/trees/concat/ng/na/ng_concat_pfml.treefile
-sbatch scripts/L746_concat_pfml_ng_na.sh
-sbatch scripts/L746_concat_pfml_strict_na.sh
-sbatch scripts/L746_concat_pfml_kcg_na.sh
-sbatch scripts/L746_concat_pfml_kcg2_na.sh
+sbatch scripts/L1648_concat_pfml_ng_na.sh
+sbatch scripts/L1648_concat_pfml_strict_na.sh
+sbatch scripts/L1648_concat_pfml_kcg_na.sh
+sbatch scripts/L1648_concat_pfml_kcg2_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
-# The astral trees wimm be in analyses/L1648/trees/astral/aa|na/ng_astral.tre
-sbatch scripts/L746_astral10_ng_na.sh
-sbatch scripts/L746_astral10_ng_aa.sh
+# The astral trees will be in analyses/L1648/trees/astral/aa|na/${filter}_astral.tre
+# I made a loop inside the script to run all trimming strategies in a single job.
+# This works here because Astral si very fast, so this saves some lines of code
+sbatch scripts/L1648_astral10_all_trimming_na.sh
+sbatch scripts/L1648_astral10_all_trimming_aa.sh
 
 ####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
 
