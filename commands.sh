@@ -246,7 +246,7 @@ sbatch scripts/L1648_concat_guide_kcg.sh
 sbatch scripts/L1648_concat_guide_kcg2.sh
 # Infer aa concatenated PMSF trees
 # The pmsf tree will be in analyses/L1648/trees/concat/ng/aa/ng_concat_pmsf.treefile
-sbatch scripts/L1648_concat_pmsf_ng.sh
+sbatch scripts/L1648_concat_pmsf_ng.sh # This produces the tree presented in Fig. 2
 sbatch scripts/L1648_concat_pmsf_strict.sh
 sbatch scripts/L1648_concat_pmsf_kcg.sh
 sbatch scripts/L1648_concat_pmsf_kcg2.sh
@@ -279,6 +279,11 @@ sbatch scripts/L1648_concat_pfml_kcg2_na.sh
 # This works here because Astral si very fast, so this saves some lines of code
 sbatch scripts/L1648_astral10_all_trimming_na.sh
 sbatch scripts/L1648_astral10_all_trimming_aa.sh
+
+# L1082
+
+
+# L1233
 
 ####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
 
