@@ -262,11 +262,17 @@ sbatch scripts/L1648_concat_pfml_strict_aa.sh
 sbatch scripts/L1648_concat_pfml_kcg_aa.sh
 sbatch scripts/L1648_concat_pfml_kcg2_aa.sh
 # Run partition finder for na concat alignment within iqtree
-# The partition and model file will be in analyses/L1648/trees/concat/na/ng_concat.best_scheme.nex
-sbatch scripts/L746_concat_pf_ng_na.sh
+# The partition and model file will be in analyses/L1648/trees/concat/ng/na/ng_concat.best_scheme.nex
+sbatch scripts/L1648_concat_pf_ng_na.sh
+sbatch scripts/L1648_concat_pf_strict_na.sh
+sbatch scripts/L1648_concat_pf_kcg_na.sh
+sbatch scripts/L1648_concat_pf_kcg2_na.sh
 # Infer ml concat tree for na using partitions from pf
-# The tree will be in analyses/L1648/trees/concat/na/ng_concat_pfml.treefile
+# The tree will be in analyses/L1648/trees/concat/ng/na/ng_concat_pfml.treefile
 sbatch scripts/L746_concat_pfml_ng_na.sh
+sbatch scripts/L746_concat_pfml_strict_na.sh
+sbatch scripts/L746_concat_pfml_kcg_na.sh
+sbatch scripts/L746_concat_pfml_kcg2_na.sh
 # Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
 # The astral trees wimm be in analyses/L1648/trees/astral/aa|na/ng_astral.tre
 sbatch scripts/L746_astral10_ng_na.sh
