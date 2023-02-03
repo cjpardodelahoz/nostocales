@@ -74,4 +74,4 @@ bic_diff_plot <- ggplot(light_mf_by_locus_ng, aes(locus, y = bic_difference)) +
         panel.background = element_blank(),
         legend.position = "none",
         aspect.ratio = 1)
-ggsave(bic_diff_plot, file = "figS4.pdf", device = "pdf")
+ggsave(plot = bic_diff_plot, filename = "figS4.pdf", device = "pdf")
