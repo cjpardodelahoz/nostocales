@@ -25,6 +25,7 @@ sbatch scripts/concatenate_all_cyanodb10.sh
 # This will write the tree to analyses/prelim/trees/concat/concat_aa.tree
 sbatch scripts/prelim_concat_tree.sh
 
+
 ####### ALIGNMENTS, GENE AND SPECIES TREES FOR SUBSET 1 (55 TAXA) ########
 
 # L31
@@ -285,11 +286,58 @@ sbatch summarize_L1648_subset0_alns.sh
 
 # L1082 and L1233
 
-#
+# I called the L1082 and L1233 the "ngmin" datasets, for minimal with no gaps.
+# The idea was to remove alignments with low phylogenetic signal. 
+# I took the resulting gene trees from the L1648 datasets and fitted a curve to 
+# the relationship between the mean UFBoot support and the number of variable 
+# sites from each alignment. Finally, we inferred the y-value of the inflexion 
+# point of this curve and retained the loci for the alignments that yielded 
+# trees with mean UFBoot equal to or higer than that inflexion point.
+# This script will produce the list of the loci that were kept with that
+# criterium. Amino acids (misc_files/L1233.txt) and nucleotides 
+# (misc_files/L1082.txt). It will also produce tha plots in Fig. S2, which show,
+# the relationship between no. of varable sites and mean ufboot for na and aa.
 Rscript scripts/ngmin.R
+# Run treeshrink on the aa L1233 and na L1082 loci to remove taxa on unusually
+# long branches from the ng alignments prior to the new set of phylogenetic
+# alignments.
+scripts/prep_treeshrink_input.sh
+# Run tree shrink on the L1233 and L1082 datasets
+sbatch scripts/treeshink_aa.sh
+sbatch scripts/treeshink_na.sh
+# Sort shrunk alignments into the ngmin alignments directory
+scripts/sort_shrunk_alns.sh
+# Generate codon partition for ngmin nucleotide alignments (L1082)
+scripts/get_codon_partition_L1082_subset0_ngmin.sh
+# Run ML gene trees with iqtree
+# All iqtree output will be written to analyses/ngmin/trees/single/aa|na
+# The tree file will be analyses/ngmin/trees/single/aa|na/${locus}_seelcted_55_ng.treefile
+sbatch scripts/ml_gene_trees_L1233_subset0_aa.sh
+sbatch scripts/ml_gene_trees_L1082_subset0_na.sh
+# Concatenate sequences
+# Concatenated alignments will be in analyses/L746/alignments/concat
+sbatch scripts/concatenate_ngmin_subset0.sh
+# Get codon partition file for the na concatenated alignments
+# Codon partitions will be in analyses/ngmin/alignments/concat/na/ngmin_na_Cpart
+scripts/get_codon_partition_concat_ngmin_L1082.sh
+# Infer aa concatenated guide tree for PMSF
+sbatch scripts/L1233_concat_guide_ngmin.sh
+# Infer aa concatenated PMSF tree
+# The pmsf tree will be in analyses/ngmin/trees/concat/aa/ngmin_concat_pmsf.treefile
+sbatch scripts/L1233_concat_pmsf_ngmin.sh
+# Run partition finder for na concat alignment within iqtree
+# The partition and model file will be in analyses/ngmin/trees/concat/na/ngmin_concat.best_scheme.nex
+sbatch scripts/L1082_concat_pf_ngmin_na.sh
+# Infer ml concat tree for na using partitions from pf
+# The tree will be in analyses/ngmin/trees/concat/na/ngmin_concat_pfml.treefile
+sbatch scripts/L1082_concat_pfml_ngmin_na.sh
+# Run ASTRAL on gene trees with branches < %10 UFBoot collapsed
+# The astral trees wimm be in analyses/L746/trees/astral/aa|na/ng_astral.tre
+sbatch scripts/L1082_astral10_ngmin_na.sh
+sbatch scripts/L1233_astral10_ngmin_aa.sh
 
 
-####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
+####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET (FIG S4) ########
 
 # Compile ModelFinder output from the L1648 amino acid datasets. This will
 # extract the ModelFinder output table from the IQ-Tree log for each locus and
