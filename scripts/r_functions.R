@@ -230,3 +230,16 @@ model_finder_df <- function(mf_path, aln_filter, suffix, madd) {
   # Return the data frame
   return(mf_df)
 }
+
+# Function to calculate mean bootstrap support
+# locus   locus code
+# path    path to trees
+# suffix  suffix of tree files (e.g. "_selected_55_ng.treefile")
+get_mean_bootstrap_single <- function(locus, path, suffix) {
+  tree <- read.tree(file = paste(path, locus, suffix, sep = ""))
+  mean_ufboot <- tree$node.label %>%
+    as.numeric() %>%
+    mean(na.rm = T)
+}
+# Vectorize function
+get_mean_bootstrap <- Vectorize(get_mean_bootstrap_single, vectorize.args = "locus")

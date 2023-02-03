@@ -281,10 +281,12 @@ sbatch scripts/L1648_astral10_all_trimming_na.sh
 sbatch scripts/L1648_astral10_all_trimming_aa.sh
 # Get alignment summaries with AMAS. We will use this later for comparisons
 # of the alignment features and to generate the L1082 and L1233 datasets
-
+sbatch summarize_L1648_subset0_alns.sh
 
 # L1082 and L1233
 
+#
+Rscript scripts/ngmin.R
 
 
 ####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
@@ -296,4 +298,4 @@ scripts/compile_mf_outputs.sh
 # Compare the BIC of the best site-heterogeneous and the best site-homogeneous
 # models for each locus in the L1648+ng amino acid datasets and generate
 # Figure S4
-Rscript scripts/bic_diff_plot.R
+Rscript scripts/bic_diff_plot.R # REVISE TO MAKE SURE PACKAGES ARE CALLED APPROPRIATELY AND GGSAVE
