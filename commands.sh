@@ -279,11 +279,13 @@ sbatch scripts/L1648_concat_pfml_kcg2_na.sh
 # This works here because Astral si very fast, so this saves some lines of code
 sbatch scripts/L1648_astral10_all_trimming_na.sh
 sbatch scripts/L1648_astral10_all_trimming_aa.sh
+# Get alignment summaries with AMAS. We will use this later for comparisons
+# of the alignment features and to generate the L1082 and L1233 datasets
 
-# L1082
+
+# L1082 and L1233
 
 
-# L1233
 
 ####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET ########
 
