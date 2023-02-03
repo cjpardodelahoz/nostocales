@@ -336,6 +336,11 @@ sbatch scripts/L1082_concat_pfml_ngmin_na.sh
 sbatch scripts/L1082_astral10_ngmin_na.sh
 sbatch scripts/L1233_astral10_ngmin_aa.sh
 
+####### COMPARISON OF L1648 ALIGMENTS (FIG S3) ########
+
+# Generate the plots from Fig. S3 that summarize the features
+# of the L1648 alignments
+Rscript scripts/L1648_alignment_features.R
 
 ####### SUBSTITUTION MODEL FIT FOR L1648 AA DATASET (FIG S4) ########
 
@@ -346,4 +351,4 @@ scripts/compile_mf_outputs.sh
 # Compare the BIC of the best site-heterogeneous and the best site-homogeneous
 # models for each locus in the L1648+ng amino acid datasets and generate
 # Figure S4
-Rscript scripts/bic_diff_plot.R # REVISE TO MAKE SURE PACKAGES ARE CALLED APPROPRIATELY AND GGSAVE
+Rscript scripts/bic_diff_plot.R
