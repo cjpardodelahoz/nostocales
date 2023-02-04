@@ -358,3 +358,9 @@ Rscript scripts/bic_diff_plot.R
 # Prepare directories and trees for DiscoVista analyses comparing gene trees
 # to the corresponding concatenated tree inferred with the same loci set
 scripts/prep_gene_vs_concat.sh
+# Generate the clade definitions file required by discovista. This file needs to
+# have all the bipartitions included in the reference tree that will be 
+# compared to the corresponding gene trees. Therefore, we need one clade_def file
+# per dataset. This requires the GO package bp. Look inside the script for
+# installation instructions
+scripts/gene_vs_concat_clade_defs.sh
