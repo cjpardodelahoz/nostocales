@@ -352,3 +352,9 @@ scripts/compile_mf_outputs.sh
 # models for each locus in the L1648+ng amino acid datasets and generate
 # Figure S4
 Rscript scripts/bic_diff_plot.R
+
+####### ANALYSES OF PHYLOGENETIC CONFLICT ########
+
+# Prepare directories and trees for DiscoVista analyses comparing gene trees
+# to the corresponding concatenated tree inferred with the same loci set
+scripts/prep_gene_vs_concat.sh
