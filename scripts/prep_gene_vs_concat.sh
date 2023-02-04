@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This is a script to prepare directories and trees for DiscoVista analyses 
+# comparing gene trees to the corresponding concatenated tree inferred with the 
+# same loci set
+
 # Variable with datasets that were only trimmed to no gaps (+ng)
 datasets="L31 L70 L746 ngmin"
 # Loop through these datasets and sort the trees
@@ -20,7 +24,7 @@ done
 filters="ng strict kcg kcg2"
 # Loop through these filters and sort the L1648 trees
 for filter in ${filters} ; do
- # Directories in to store inputs for DiscoVista
+ # Directories to store inputs for DiscoVista
  mkdir -p analyses/conflict/discovista_in/gene_vs_concat/L1648_aa_${filter}_sho/trees
  mkdir -p analyses/conflict/discovista_in/gene_vs_concat/L1648_aa_${filter}_shet/trees
  mkdir -p analyses/conflict/discovista_in/gene_vs_concat/L1648_na_${filter}/trees
