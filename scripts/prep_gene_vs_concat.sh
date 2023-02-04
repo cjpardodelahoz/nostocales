@@ -2,7 +2,9 @@
 
 # This is a script to prepare directories and trees for DiscoVista analyses 
 # comparing gene trees to the corresponding concatenated tree inferred with the 
-# same loci set
+# same loci set. Discovista requires a directory with one subdirectory per tree
+# to be compared, and the the treefiles within need to be named
+# "estimated_species_tree.tree"
 
 # Variable with datasets that were only trimmed to no gaps (+ng)
 datasets="L31 L70 L746 ngmin"
