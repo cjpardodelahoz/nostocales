@@ -363,4 +363,15 @@ scripts/prep_gene_vs_concat.sh
 # compared to the corresponding gene trees. Therefore, we need one clade_def file
 # per dataset. This requires the GO package bp. Look inside the script for
 # installation instructions
-scripts/gene_vs_concat_clade_defs.sh
+scripts/gene_vs_concat_clade_defs.sh # NEED TO TEST THIS WHEN CONCAT TREES ARE DISTRIBUTED
+# Run DiscoVista to compare gene trees to the corresponding concatenated tree
+# This analyses was run locally on our iMac Pro.
+for dataset in $(cd analyses/conflict/discovista_in/gene_vs_concat && ls) ; do
+  docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
+  -c analyses/conflict/discovista_in/gene_vs_concat/${dataset}/clade_def \
+  -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}/trees \
+  -t 95 -o analyses/conflict/discovista_in/gene_vs_concat/${dataset}/
+done
+# Prepare directories and trees for DiscoVista analyses comparing species trees
+# (concatenated and ASTRAL) to 22 focal bipartitions
+scripts/prep_species_vs_22_biparts.sh
