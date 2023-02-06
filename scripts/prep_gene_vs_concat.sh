@@ -11,7 +11,8 @@ datasets="L31 L70 L746 ngmin"
 # Loop through these datasets and sort the trees
 for dataset in ${datasets} ; do
  # Directory in to store inputs for DiscoVista
- mkdir -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}/trees
+ mkdir -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}_aa/trees
+ mkdir -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}_na/trees
  # Fetch aa trees
  scripts/prep_discov_trees.sh analyses/${dataset}/trees/single/aa \
   treefile \
