@@ -185,7 +185,7 @@ Rscript scripts/filter_loci_nostocalesdb10_subset0.R # NEEDS TO BE TESTED WHEN I
 # Get sequence files for each of the busco loci
 # This script will create the busco sequence files in analyses/L1648/seqs
 # It will run faster with higher memory (peak at ~32 GB RAM)
-Rscript scripts/sort_busco_seqs_nostocalesdb10_subset0.R # NEEDS TO BE TESTED WHEN I COPY THE BUSCO OUTPUT
+Rscript scripts/sort_busco_seqs_nostocalesdb10_subset0.R
 # Add the "selected_55"" suffix to the seqs 
 for locus in $(cat misc_files/L1648.txt) ; do
  mv analyses/L1648/seqs/${locus}.fna analyses/L1648/seqs/${locus}_selected_55.fna
