@@ -15,8 +15,6 @@ library(ape)
 
 ################# BUSCO SUMMARY ####################
 
-# Start with with "summary" set as the default directory
-
 # Load one of the tables
 full_table <- read.delim("analyses/genome_qc/busco/all_nostocalesdb10/by_taxon/Anabaena_cylindrica_PCC_7122/run_nostocales_odb10/full_table.tsv", 
                          header=FALSE, comment.char = "#")
@@ -28,6 +26,8 @@ BUSCO_id <- unique(BUSCO_id)
 # so "-" have been replaced by "." in taxa names
 reports <- list.files(path = "analyses/genome_qc/busco/all_nostocalesdb10/summary",
                       pattern="summary_", full.names = T, recursive = F)
+# remove "./summary_Nostoc_sp_3335mg" from the list using the index
+reports <- reports[-c(162)]
 
 # Loop through the result files to get the second column and append it to a
 # consolidated table
@@ -50,7 +50,7 @@ colnames(BUSCO_result) <- taxa_names
 write.csv(BUSCO_result, file = "analyses/genome_qc/busco/all_nostocalesdb10/BUSCO_result_all.csv")
 
 # Replaced the "Complete" values for 1 and the rest for zero
-BUSCO_result_num <- as.data.frame(BUSCO_result[,2:221], row.names = as.character(BUSCO_result[,1]))
+BUSCO_result_num <- as.data.frame(BUSCO_result[,2:220], row.names = as.character(BUSCO_result[,1]))
 for (j in 1:ncol(BUSCO_result_num)) {
   BUSCO_result_num[,j] <- (str_replace(BUSCO_result_num[,j], "Complete", "1"))
   BUSCO_result_num[,j] <- (str_replace(BUSCO_result_num[,j], "Fragmented", "0"))
