@@ -370,8 +370,22 @@ for dataset in $(cd analyses/conflict/discovista_in/gene_vs_concat && ls) ; do
   docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
   -c analyses/conflict/discovista_in/gene_vs_concat/${dataset}/clade_def \
   -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}/trees \
-  -t 95 -o analyses/conflict/discovista_in/gene_vs_concat/${dataset}/
+  -t 95 -o analyses/conflict/discovista_out/gene_vs_concat/${dataset}/
 done
 # Prepare directories and trees for DiscoVista analyses comparing species trees
 # (concatenated and ASTRAL) to 22 focal bipartitions
-scripts/prep_species_vs_22_biparts.sh
+scripts/prep_species_vs_22_biparts.sh # NEED TO TEST THIS WHEN CONCAT TREES ARE DISTRIBUTED
+# Run DiscoVista to compare concat trees to the 22 focal bipartitions
+# I prepared the clade_def file for the following two analyses by hand
+# so it included the 22 focal bipartitions
+# Both of these analyses were run locally on our iMac Pro.
+docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
+ -c analyses/conflict/discovista_in/concat/clade_def \
+ -p analyses/conflict/discovista_in/concat/trees \ 
+ -t 95 -o analyses/conflict/discovista_out/concat
+# Run DiscoVista to compare astral trees to the 22 focal bipartitions
+docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
+ -c analyses/conflict/discovista_in/astral/clade_def \
+ -p analyses/conflict/discovista_in/astral/trees \ 
+ -t 95 -o analyses/conflict/discovista_out/concat
+
