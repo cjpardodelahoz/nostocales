@@ -353,7 +353,9 @@ scripts/compile_mf_outputs.sh
 # Figure S4
 Rscript scripts/bic_diff_plot.R
 
-####### ANALYSES OF PHYLOGENETIC CONFLICT ########
+####### ANALYSES OF PHYLOGENETIC CONFLICT (FIGS 2, 3, S6 and S7) ########
+
+# Gene trees vs concatenated trees
 
 # Prepare directories and trees for DiscoVista analyses comparing gene trees
 # to the corresponding concatenated tree inferred with the same loci set
@@ -372,12 +374,24 @@ for dataset in $(cd analyses/conflict/discovista_in/gene_vs_concat && ls) ; do
   -p analyses/conflict/discovista_in/gene_vs_concat/${dataset}/trees \
   -t 95 -o analyses/conflict/discovista_out/gene_vs_concat/${dataset}/
 done
+# Summarize the gene tree conflict analyses and compare the proportion of
+# conflicting gene trees per bipartition across the different datasets (Figs S6-S7)
+Rscript scripts/gene_vs_concat_conflict_summary.R
+# Get the pie charts summarizing the gene tree conflict on each bipartition of
+# the tree inferred with the amino acid L1648+ng+site-hete (Fig. 2). The numbers
+# of the pie charts correspond to the bipartition numbers as defined in the 
+# analyses/conflict/gene_vs_concat/L1648_aa_ng_shet/clade_def files
+Rscript scripts/L1648_ng_shet_conflict_pies.R
+
+# Species trees vs 22 focal bipartitions
+
 # Prepare directories and trees for DiscoVista analyses comparing species trees
 # (concatenated and ASTRAL) to 22 focal bipartitions
 scripts/prep_species_vs_22_biparts.sh # NEED TO TEST THIS WHEN CONCAT TREES ARE DISTRIBUTED
 # Run DiscoVista to compare concat trees to the 22 focal bipartitions
 # I prepared the clade_def file for the following two analyses by hand
-# so it included the 22 focal bipartitions
+# so it included the 22 focal bipartitions. The results of this analyses were
+# used to generate Fig. 3.
 # Both of these analyses were run locally on our iMac Pro.
 docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
  -c analyses/conflict/discovista_in/concat/clade_def \
@@ -388,4 +402,6 @@ docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
  -c analyses/conflict/discovista_in/astral/clade_def \
  -p analyses/conflict/discovista_in/astral/trees \ 
  -t 95 -o analyses/conflict/discovista_out/concat
+ 
+####### INFERENCE OF PHYLOGENETIC NETWORK WITH SNaQ (FIG 4a) ########
 

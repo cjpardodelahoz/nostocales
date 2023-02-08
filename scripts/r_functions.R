@@ -243,3 +243,63 @@ get_mean_bootstrap_single <- function(locus, path, suffix) {
 }
 # Vectorize function
 get_mean_bootstrap <- Vectorize(get_mean_bootstrap_single, vectorize.args = "locus")
+
+# Function to replace and condense discovista conflict scoring
+# discov_out  A data frame with the raw output table of Discovista conflict analysis
+condense_discov_out <- function(discov_out) {
+  # Keep only bipartition columns
+  discov_new <- select(discov_out, 4:ncol(discov_out))
+  # Replace conflict scoring
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Missing", replacement = "uninformative")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Compatible \\(Weak Rejection\\)", replacement = "uninformative")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Weak Support", replacement = "uninformative")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Strong Rejection", replacement = "discordant")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Strong Support", replacement = "concordant")
+  # Make the df
+  discov_new <- as.data.frame(discov_new) %>%
+    pivot_longer(everything(), names_to = "bipart", values_to = "support") %>%
+    count(bipart, support)  %>%
+    pivot_wider(names_from = support, values_from = n) %>%
+    mutate_if(is.integer, ~replace(., is.na(.), 0)) %>%
+    mutate(no_loci =
+             rowSums(across(concordant:uninformative))) %>%
+    mutate(percent_concordant =
+             (concordant/no_loci)*100) %>%
+    mutate(percent_discordant = 
+             (discordant/no_loci)*100) %>%
+    mutate(percent_uninformative = 
+             (uninformative/no_loci)*100)
+  return(discov_new)
+}
+
+# Function to replace and condense discovista conflict scoring keeping weak support category
+# discov_out  A data frame with the raw output table of Discovista conflict analysis
+condense_discov_out_weak <- function(discov_out) {
+  # Keep only bipartition columns
+  discov_new <- select(discov_out, 4:ncol(discov_out))
+  # Replace conflict scoring
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Missing", replacement = "uninformative")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Compatible \\(Weak Rejection\\)", replacement = "weak_reject")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Weak Support", replacement = "weak_support")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Strong Rejection", replacement = "discordant")
+  discov_new <- apply(discov_new, MARGIN = 2, str_replace, pattern = "Strong Support", replacement = "concordant")
+  # Make the df
+  discov_new <- as.data.frame(discov_new) %>%
+    pivot_longer(everything(), names_to = "bipart", values_to = "support") %>%
+    count(bipart, support)  %>%
+    pivot_wider(names_from = support, values_from = n) %>%
+    mutate_if(is.integer, ~replace(., is.na(.), 0)) %>%
+    mutate(no_loci =
+             rowSums(across(concordant:weak_support))) %>%
+    mutate(percent_concordant =
+             (concordant/no_loci)*100) %>%
+    mutate(percent_discordant = 
+             (discordant/no_loci)*100) %>%
+    mutate(percent_uninformative = 
+             (uninformative/no_loci)*100) %>%
+    mutate(percent_weak_reject =
+             (weak_reject/no_loci)*100) %>%
+    mutate(percent_weak_support =
+             (weak_support/no_loci)*100)
+  return(discov_new)
+}
