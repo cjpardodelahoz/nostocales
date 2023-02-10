@@ -6,8 +6,8 @@
 # Prepare concat trees for DiscoVista input
 for tree in $(cd analyses/conflict/concat_trees && ls *.treefile) ; do
   mkdir -p analyses/conflict/discovista_in/concat/trees/${tree%.treefile}-concat
-  cp analyses/conflict/concat_trees/${tree%.treefile} \
-   analyses/conflict/discovista_in/concat/trees/${tree}-concat/estimated_species_tree.tree
+  cp analyses/conflict/concat_trees/${tree} \
+   analyses/conflict/discovista_in/concat/trees/${tree%.treefile}-concat/estimated_species_tree.tree
 done
 
 # Gather all astral trees
@@ -17,9 +17,9 @@ datasets="L31 L70 L746 ngmin"
 mkdir -p analyses/conflict/astral_trees
 for dataset in ${datasets} ; do
  cp analyses/${dataset}/trees/astral/aa/ng_astral.tre \
-  analyses/conflict/astral_trees/${dataset}_aa
+  analyses/conflict/astral_trees/${dataset}_aa.treefile
  cp analyses/${dataset}/trees/astral/na/ng_astral.tre \
-  analyses/conflict/astral_trees/${dataset}_na
+  analyses/conflict/astral_trees/${dataset}_na.treefile
 done
 # Variable with the trimming filters used for the L1648 alignments
 filters="ng strict kcg kcg2"
@@ -35,6 +35,6 @@ done
 # Prepare ASTRAL trees for DiscoVista input
 for tree in $(cd analyses/conflict/astral_trees && ls *.treefile) ; do
   mkdir -p analyses/conflict/discovista_in/astral/trees/${tree%.treefile}-astral
-  cp analyses/conflict/astral_trees/${tree%.treefile} \
+  cp analyses/conflict/astral_trees/${tree} \
     analyses/conflict/discovista_in/astral/trees/${tree%.treefile}-astral/estimated_species_tree.tree
 done

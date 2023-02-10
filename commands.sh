@@ -215,6 +215,7 @@ scripts/get_codon_partition_L1648_subset0_ng.sh
 # All these searches were done with site-homogeneous models (sho)
 # All nucleotide iqtree output will be written to analyses/L1648/trees/single/ng|strict|kcg|kcg2/na/
 # The tree file will be analyses/L1648/trees/single/ng/na/${locus}_seelcted_55_ng.treefile
+# Will not upload ufboot and checkpoint files to save space
 sbatch scripts/ml_gene_trees_L1648_subset0_na_ng.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na_strict.sh
 sbatch scripts/ml_gene_trees_L1648_subset0_na_kcg.sh
@@ -365,7 +366,7 @@ scripts/prep_gene_vs_concat.sh
 # compared to the corresponding gene trees. Therefore, we need one clade_def file
 # per dataset. This requires the GO package bp. Look inside the script for
 # installation instructions
-scripts/gene_vs_concat_clade_defs.sh # NEED TO TEST THIS WHEN CONCAT TREES ARE DISTRIBUTED
+scripts/gene_vs_concat_clade_defs.sh
 # Run DiscoVista to compare gene trees to the corresponding concatenated tree
 # This analyses was run locally on our iMac Pro.
 for dataset in $(cd analyses/conflict/discovista_in/gene_vs_concat && ls) ; do
@@ -387,7 +388,7 @@ Rscript scripts/L1648_ng_shet_conflict_pies.R
 
 # Prepare directories and trees for DiscoVista analyses comparing species trees
 # (concatenated and ASTRAL) to 22 focal bipartitions
-scripts/prep_species_vs_22_biparts.sh # NEED TO TEST THIS WHEN CONCAT TREES ARE DISTRIBUTED
+scripts/prep_species_vs_22_biparts.sh
 # Run DiscoVista to compare concat trees to the 22 focal bipartitions
 # I prepared the clade_def file for the following two analyses by hand
 # so it included the 22 focal bipartitions. The results of this analyses were
