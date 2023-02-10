@@ -406,3 +406,10 @@ docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
  
 ####### INFERENCE OF PHYLOGENETIC NETWORK WITH SNaQ (FIG 4a) ########
 
+# Bayesian gene trees
+
+# Prepare alignments for phylonetwork analyses. Take the aa L1648+ng alignments
+# and remove the taxa that are not part of subset 1 
+# (misc_files/taxa_dropped_subset1.txt)
+scripts/prep_phylonetwork_alns.sh
+
