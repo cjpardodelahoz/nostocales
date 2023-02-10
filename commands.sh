@@ -412,4 +412,11 @@ docker run -v $(pwd):/data esayyari/discovista discoVista.py -m 0 -k 1 \
 # and remove the taxa that are not part of subset 1 
 # (misc_files/taxa_dropped_subset1.txt)
 scripts/prep_phylonetwork_alns.sh
+# Get list of loci with missing taxa and remove the alignments
+Rscript scripts/get_loci_to_rm_subset1.R
+for locus in $(cat misc_files/subset1_loci_rm.txt) ; do
+ rm analyses/phylonetworks/alignments/${locus}
+done
+# Run ModelFinder within iqtree to find best fit models among the ones available
+# in phylobayes
 
