@@ -419,4 +419,18 @@ for locus in $(cat misc_files/subset1_loci_rm.txt) ; do
 done
 # Run ModelFinder within iqtree to find best fit models among the ones available
 # in phylobayes
+sbatch scripts/subset1_aa_ng_mf.sh
+# Extract the ModelFinder result tables 
+scripts/get_mf_out.sh misc_files/L1648.txt.bak \
+ analyses/phylonetworks/modelfinder_bulk \
+ subset1_ng.log \
+ analyses/phylonetworks/modelfinder_out \
+ subset1_ng
+# Generate the PhyloBayes commands for each locus using the best fit model found
+# with ModelFinder
+Rscript scripts/write_pb_commands_subset1.R
+# Run two chain samplers with Phylobayes to get gene tree posteriors
+sbatch scripts/pb_subset1_c1.sh
+sbatch scripts/pb_subset1_c2.sh
+
 

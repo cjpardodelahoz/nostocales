@@ -149,7 +149,7 @@ sort_busco_seqs <- function(sample_ids, busco_out_dir, busco_db, out_file_name,
 get_n_cat <- function(x) {
   n_cat_query <- c("C10", "C20", "C30", "C40", "C50", "C60")
   lgl <- map_lgl(n_cat_query, str_detect, string = x)
-  n_cat_x <- as.numeric(n_cat_query[lgl] %>% str_replace(pattern = "C", replacement = ""))
+  n_cat_x <- n_cat_query[lgl]
   ifelse(length(n_cat_x) == 0, return(NA), return(n_cat_x)) 
 }
 
@@ -302,4 +302,45 @@ condense_discov_out_weak <- function(discov_out) {
     mutate(percent_weak_support =
              (weak_support/no_loci)*100)
   return(discov_new)
+}
+
+# Function to generate files with model commands to run PhyloBayes
+# mf_path     path to directory with mf output files
+# aln_filter  alignment filter code
+# suffix      characters between the locus code and the aln filter code, e.g., "_subset1_"
+# madd        additional site-heterogeneous models evaluted and included in the mf output
+write_pb_command <- function(mf_path, aln_filter, suffix, madd, out_path) {
+  # Import and append all mf output tables
+  df_mf <- model_finder_df(mf_path, aln_filter, suffix, madd)
+  # Filter to best model per locus
+  df_mf <- dplyr::filter(df_mf, best_model == TRUE)
+  # Add column with phylobayes command-chain 1
+  df_mf <- dplyr::mutate(df_mf,
+                  pb_command_1 = ifelse(best_shet == TRUE, 
+                                        paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""),
+                                        ifelse(rates != "gamma",
+                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""),
+                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""))))
+  # Add column with phylobayes command-chain2
+  df_mf <- dplyr::mutate(df_mf,
+                  pb_command_2 = ifelse(best_shet == TRUE, 
+                                        paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""),
+                                        ifelse(rates != "gamma",
+                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""),
+                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""))))
+  # write the command file for each locus
+  for (locus in df_mf$locus) {
+    command_1 <- df_mf$pb_command_1[df_mf$locus == locus]                                   # Extract the pb command for the given locus
+    command_2 <- df_mf$pb_command_2[df_mf$locus == locus] 
+    file_name_1 <- paste(out_path, locus, suffix, aln_filter, "_c1", ".pb", sep = "")       # Assemble file name
+    file_name_2 <- paste(out_path, locus, suffix, aln_filter, "_c2", ".pb", sep = "")
+    write(command_1, file = file_name_1)                                                    # Save the file to out_path
+    write(command_2, file = file_name_2)
+  }
 }
