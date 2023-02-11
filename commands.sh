@@ -465,5 +465,58 @@ mkdir -p analyses/phylonetworks/snaq/bootstrap
 sbatch scripts/slurm_bootsnaq.sh
 
 
+####### DIVERGENCE TIME ESTIMATION WITH MCMCTREE (FIG 4b-c and Fig S5) ########
+
+# We ran these analyses on our iMacPro. Note that this is the only time that
+# we executed softwar in subdirectoreis of the project. Make sure to go back to root
+# once you are done with MCMCTREE
+
+# Prepare directories
+mkdir -p analyses/divtime/data
+mkdir -p analyses/divtime/gH
+mkdir -p analyses/divtime/mcmc/c{1..3]
+mkdir -p analyses/divtime/prior/c{1..3}
+# We took the major edge tree topology from the snaq network with h=2 and used it
+# as a constraint for this analysis. The newick file is under 
+# analyses/divtime/data/subset1.tree. We added one calibration to that tree.
+# Concatenate subset1 alignments
+AMAS.py concat -i analyses/phylonetworks/alignments/*.phy \
+ -f phylip -d aa -u phylip -c 4 \
+ -t analyses/divtime/data/subset1_ng_concat.phy
+# go to gH directory and execute the outBV control file
+cd ../gH/
+mcmctree mcmctree-outBV.ctl
+# Remove the out.BV file and the rst files
+rm out.BV
+rm rst*
+# Modify the the tmp0001.ct file:
+# model = 2 * 2: Empirical
+# aaRatefile = lg.dat
+# MAKE SURE THE lg.dat FILE IS IN THE DIRECTORY
+# generate the out.BV file with the LG+G4 model
+codeml tmp0001.ctl
+# copy file with g and Hessian to the mcmc chain directory
+cp rst2 ../mcmc/c1/in.BV
+cp rst2 ../mcmc/c2/in.BV
+cp rst2 ../mcmc/c3/in.BV
+cd ../mcmc/c1
+# run mcmc to sample posterior
+mcmctree mcmctree_c1.ctl
+cd ../c2
+mcmctree mcmctree_c2.ctl
+cd ../c3
+mcmctree mcmctree_c3.ctl
+# run mcmc with no data to sample the prior
+cd ../../prior/c1
+mcmctree mcmctree_pr_c1.ctl
+cd ../c2
+mcmctree mcmctree_pr_c2.ctl
+cd ../c3
+mcmctree mcmctree_pr_c3.ctl
+# Go back to the project root directory!
+cd ../../../../
+# Summarize the results of the prior and posterior and chain convergence
+Rscript mcmctree_results.R
 
 
+####### PHYLOGENOMIC JACKKNIFFING (FIG 5 and Fig S8) ########
