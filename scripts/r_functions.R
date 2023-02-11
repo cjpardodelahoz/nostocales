@@ -344,3 +344,97 @@ write_pb_command <- function(mf_path, aln_filter, suffix, madd, out_path) {
     write(command_2, file = file_name_2)
   }
 }
+
+# Function to get random sample of loci names
+# size        number of loci to sample
+# reps        number of replicate samples to get
+# loci_names  pool of loci names to sample from
+sample_loci_single <- function(size, reps, loci_names, path, prefix, suffix) {
+  # Get matrix with random samples of loci 
+  rloci_sets <- replicate(reps, sample(loci_names, size))
+  # Write each random sample (column in the matrix) into a file
+  for (rep in 1:reps) {
+    file_name <- paste(path, size, "_rep", rep, sep = "")         # file name for each sample (column of the matrix), e.g., "31_rep1"
+    rloci_set <- rloci_sets[ ,rep] %>%
+      paste(suffix, sep = "") %>%
+      paste(prefix, ., sep = "")
+    write(rloci_set, file = file_name)
+  }
+}
+
+# Wrapper function for "sample_loci_single" to get random samples of different numbers of loci names
+# size_seq    sequence of number of loci to sample
+# reps        number of replicate samples to get
+# loci_names  pool of loci names to sample from
+# path        output path
+# prefix      path to alignment file
+# suffix      characters after locus code in alignment file names
+sample_loci_seq <- function(size_seq, reps, loci_names, path, prefix, suffix) {
+  lapply(size_seq, sample_loci_single, reps = reps, loci_names = loci_names, 
+         path = path, prefix = prefix, suffix = suffix)
+}
+
+
+# Function to test whether all bipartitions in a tree are highly supported
+# tree_file     path to the tree file
+# cutoff        suport value cutoff
+# tips_to_drop  Optional. Vector of tip labels to drop before evaluating support
+test_support_scalar <- function(tree_file, cutoff, tips_to_drop) {
+  # load tree
+  tree <- ape::read.tree(file = tree_file)
+  # if user does not provide taxa to trim
+  if (length(tips_to_drop) == 0) {
+    supported <- tree$node.label[tree$node.label != ""] %>%                   # remove empty support values
+      as.numeric() >= cutoff                                                  # convert to numeric and check which support values are higher than the threshold
+    all_supported <- all(supported)                                           # remove empty support values and check which are higher than the threshold
+    return(all_supported)
+    # if user provides taxa to trim
+  } else {
+    subtree <- ape::drop.tip(tree, tips_to_drop)                                   # trim specified taxa
+    supported <- subtree$node.label[subtree$node.label != ""] %>%             # remove empty support values 
+      as.numeric() >= cutoff                                                  # convert to numeric and check which are higher than the threshold
+    all_supported <- all(supported)                                           # check if all support values are higher than the threshold
+    return(all_supported)
+  }
+}
+# Vectorize test_support_scalar
+test_support_vect <- Vectorize(FUN = test_support_scalar, vectorize.args = "tree_file", USE.NAMES = F)
+
+# Function to count the number of distinct supported trees
+# no_loci       column with number of loci used
+# file_names    vector with paths to treefiles
+# cutoff        UFBoot threshold
+# tips_to_drop  Vector of taxa names to drop to get the subtrees that will be evaluated
+count_distinct_supported_trees <- function(no_loci, file_names, cutoff, tips_to_drop) {
+  # Make regex to query trees from a given number of loci
+  pattern <- paste(".*/", no_loci, "_rep.*", sep = "")
+  # Get the paths of all the trees of a given number of loci
+  no_loci_filenames <- file_names[stringr::str_detect(file_names, pattern)]
+  # Test which trees are fully supported supported
+  supported_lgl <- test_support_vect(no_loci_filenames, cutoff = cutoff, tips_to_drop = tips_to_drop)
+  # Get names of fuly supported trees
+  supported_filenames <- no_loci_filenames[supported_lgl]
+  # Read fully supported trees
+  trees <- lapply(supported_filenames, ape::read.tree)
+  # Trim specified taxa from trees to get subtrees of interest
+  trimmed_trees <- lapply(trees, ape::drop.tip, tip = tips_to_drop)
+  # Convert list of trees to multiPhylo object to manipulate with ape
+  class(trimmed_trees) <- "multiPhylo"
+  # Make sure trees are unrooted
+  trimmed_trees <- ape::unroot.multiPhylo(trimmed_trees)
+  # If there is only one fully supported tree, return 1
+  if (length(trimmed_trees) == 1) {
+    n_distinct_supported_trees <- 1
+    # Otherwise, calculate RF distances among trees, cluster the trees according to pairwise distance, 
+    # cut the tree with threshold of 0 to get unique trees and count them
+  } else {
+    rf_distances <- ape::dist.topo(trimmed_trees)
+    n_distinct_supported_trees <- rf_distances %>%
+      hclust() %>%
+      cutree(h = 0) %>%
+      max()
+  }
+  return(n_distinct_supported_trees)
+}
+# Vectorize no_loci argument of the function
+count_distinct_supported_trees_vect <- Vectorize(count_distinct_supported_trees, vectorize.args = "no_loci")

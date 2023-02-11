@@ -520,3 +520,23 @@ Rscript mcmctree_results.R
 
 
 ####### PHYLOGENOMIC JACKKNIFFING (FIG 5 and Fig S8) ########
+
+# Generate jackknife samples of loci
+Rscript scripts/sample_jackknife_sets.R
+# Concatenate the alignments for each jackknife sample
+scripts/prep_jackknife_alns.sh
+# Run ml guide trees for all sets
+sbatch scripts/31-131_guide.sh
+sbatch scripts/331_guide.sh
+sbatch scripts/531_guide.sh
+sbatch scripts/731_guide.sh
+sbatch scripts/1131_guide.sh
+# Run ml pmsf trees for all sets
+sbatch scripts/31-131_pmsf.sh
+sbatch scripts/331_pmsf.sh
+sbatch scripts/531_pmsf.sh
+sbatch scripts/731_pmsf.sh
+sbatch scripts/1131_pmsf.sh
+# Summarize results of the jackknife. This will produce the plots in Fig 5
+# and the tree topologies shown in Fig S8
+Rscript scripts/jackknife_summary.R
