@@ -433,4 +433,20 @@ Rscript scripts/write_pb_commands_subset1.R
 sbatch scripts/pb_subset1_c1.sh
 sbatch scripts/pb_subset1_c2.sh
 
+# Infer concordance factors with BUCKy
+
+# Add star tree at the top of all files with the posterior so all trees will have
+# taxa in the same order when converted to nexus. This is required by BUCy
+scripts/pb_trees_taxon_order.sh
+# Prepare trees to run mbsum by converting them to mrbayes nexus format
+sbatch scripts/prep_pbsum_subset1.sh
+# Run mbsum to prepare posterior trees for bucky
+sbatch scripts/pbsum_subset1.sh
+# Infer concordance factors with BUCKy
+sbatch scripts/bucky_subset1.sh
+
+# Network search with snaq
+
+
+
 

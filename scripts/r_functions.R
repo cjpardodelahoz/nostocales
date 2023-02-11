@@ -317,23 +317,23 @@ write_pb_command <- function(mf_path, aln_filter, suffix, madd, out_path) {
   # Add column with phylobayes command-chain 1
   df_mf <- dplyr::mutate(df_mf,
                   pb_command_1 = ifelse(best_shet == TRUE, 
-                                        paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""),
+                                        paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c1", sep = ""),
                                         ifelse(rates != "gamma",
-                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                                     " ", " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""),
-                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", locus, suffix, aln_filter, "_c1", sep = ""))))
+                                               paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c1", sep = ""),
+                                               paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c1", sep = ""))))
   # Add column with phylobayes command-chain2
   df_mf <- dplyr::mutate(df_mf,
                   pb_command_2 = ifelse(best_shet == TRUE, 
-                                        paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""),
+                                        paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                              " ", "-catfix ", n_cat, " -", matrix, " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c2", sep = ""),
                                         ifelse(rates != "gamma",
-                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                                     " ", " -", matrix, " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""),
-                                               paste("-d", " ", locus, suffix, aln_filter, ".phy", 
-                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", locus, suffix, aln_filter, "_c2", sep = ""))))
+                                               paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c2", sep = ""),
+                                               paste("-d", " ", out_path, locus, suffix, aln_filter, ".phy", 
+                                                     " ", " -", matrix, " -dgam 4", " -x 5 10000", " ", out_path, locus, suffix, aln_filter, "_c2", sep = ""))))
   # write the command file for each locus
   for (locus in df_mf$locus) {
     command_1 <- df_mf$pb_command_1[df_mf$locus == locus]                                   # Extract the pb command for the given locus
