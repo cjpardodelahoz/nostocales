@@ -447,6 +447,23 @@ sbatch scripts/bucky_subset1.sh
 
 # Network search with snaq
 
+# Consolidate the bucky results into a single table with all concordance factors
+mkdir -p analyses/phylonetworks/snaq
+cat analyses/phylonetworks/bucky/outfiles/*.cf > \
+ analyses/phylonetworks/snaq/CFtable_noheader.csv
+# Add the header tot he CF table
+cat misc_files/CFheader analyses/phylonetworks/snaq/CFtable_noheader.csv > \
+ analyses/phylonetworks/snaq/CFtable.csv
+# Run snaq to serach for phylonetworks with h=0 to h=4 using the astral topology
+# for subset 1 as a starting tree (analyses/phylonetworks/snaq/start_tree_subset1.tre)
+# Based on the pseudolikelihood scores (analyses/phylonetworks/snaq/plog_scores.csv)
+# The network with h=2 was the best one (Fig 4a)
+sbatch scripts/slurm_snaq_subset1.sh
+# Run a bootstrap analysis with 100 replicates on the snaq best network
+# This analyses will use the best network, net0 and the same CF table
+mkdir -p analyses/phylonetworks/snaq/bootstrap
+sbatch scripts/slurm_bootsnaq.sh
+
 
 
 
