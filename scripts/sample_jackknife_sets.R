@@ -7,7 +7,7 @@ library(tidyverse)
 source("scripts/r_functions.R")
 
 # Load list of L1648 loci codes
-L1648 <- scan(file = "misc_files/L1648.txt.bak", what = "character")
+L1648 <- scan(file = "misc_files/subset1_loci.txt", what = "character")
 # Get sequence of number of loci to evaluate bootstrap in concatenation
 no_of_loci_seq <- c(31, 51, 71, 91, 111, 131, 331, 531, 731, 1131)
 # Sample sets of loci names and write to files
