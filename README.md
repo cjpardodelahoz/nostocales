@@ -1,5 +1,7 @@
 # Computational workflow used in our paper on Nostocales phylogenomics
 
+![cover_light](https://github.com/cjpardodelahoz/nostocales/blob/main/docs/figs/cover_light.png)
+
 This repository contains all the code used in our study (Pardo-De la Hoz et. al., 2023) of phylogentic conflicts in nostocalean cyanobacteria, where we showed that an ancient rapid radiation explains most phylogenetic conflicts in the relationships among the major lineages of this order. The paper is currently accepted pending minor revisions in *Systematic Biology*. I'll post the link when it is out.
 
 ## The code
