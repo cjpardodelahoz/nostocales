@@ -540,3 +540,11 @@ sbatch scripts/1131_pmsf.sh
 # Summarize results of the jackknife. This will produce the plots in Fig 5
 # and the tree topologies shown in Fig S8
 Rscript scripts/jackknife_summary.R
+
+
+####### REFERENCE TREE OF NOSTOCALES INCLUDING 16S (FIG S10) ########
+
+# Get the 16s for the genomes that have it
+
+# Annotate genomes with prokka
+sbatch scripts/prokka_211.sh
