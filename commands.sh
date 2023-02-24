@@ -548,3 +548,5 @@ Rscript scripts/jackknife_summary.R
 
 # Annotate genomes with prokka
 sbatch scripts/prokka_211.sh
+# Run BUSCO with the nostocales odb10
+sbatch scripts/busco_211_nostocalesdb10.sh
