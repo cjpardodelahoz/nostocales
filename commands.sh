@@ -548,5 +548,7 @@ Rscript scripts/jackknife_summary.R
 
 # Annotate genomes with prokka
 sbatch scripts/prokka_211.sh
+# Extract the 16s sqs
+sbatch scripts/get_16s_from_ffn.sh
 # Run BUSCO with the nostocales odb10
 sbatch scripts/busco_211_nostocalesdb10.sh
