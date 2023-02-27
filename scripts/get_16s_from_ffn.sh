@@ -14,7 +14,7 @@ genome=$(cat misc_files/taxa_passed_qc.txt | sed -n ${SLURM_ARRAY_TASK_ID}p)
 # .ffn file output from Prokka annotation
 ffn_file=analyses/genomes_annotation/${genome}/${genome}.ffn
 # The full header of the 16 sequence in the annotation file
-seq_id=$(grep "16S ribosomal RNA" ${ffn_file})
+seq_id=$(grep "16S ribosomal RNA" ${ffn_file} | head -n 1)
 # If the 16S is present..
 if [[ -n ${seq_id} ]]; then
  # Get the seq ID as interpreted by seqkit for the 16 sequence
