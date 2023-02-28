@@ -544,11 +544,11 @@ Rscript scripts/jackknife_summary.R
 
 ####### REFERENCE TREE OF NOSTOCALES INCLUDING 16S (FIG S10) ########
 
-# Get the 16s for the genomes that have it
+# Get the 16s for the genomes that have it and the L1648 busco loci
 
 # Annotate genomes with prokka
 sbatch scripts/prokka_211.sh
 # Extract the 16s sqs
 sbatch scripts/get_16s_from_ffn.sh
-# Run BUSCO with the nostocales odb10
-sbatch scripts/busco_211_nostocalesdb10.sh
+# Sort the busco seqs for the tbas taxon set (211 taxa)
+scripts/sort_busco_seqs_nostocalesdb10_tbas.R
