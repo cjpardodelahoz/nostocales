@@ -552,3 +552,25 @@ sbatch scripts/prokka_211.sh
 sbatch scripts/get_16s_from_ffn.sh
 # Sort the busco seqs for the tbas taxon set (211 taxa)
 scripts/sort_busco_seqs_nostocalesdb10_tbas.R
+# Align AA seqs
+sbatch scripts/mafft_L1648_tbas_aa.sh
+# NA alignments with PAL2NAL
+# This will align the nucleotides using the amino acid aligment as a guideline
+# and will write the alignments to analyses/tbas/alignments/single
+sbatch scripts/pal2nal_L1648_tbas.sh
+# Compile and align the 16s sequences
+sbatch scripts/compile_align_16s_tbas.sh
+# 16s ML tree to check for contaminant seqs
+# I used this tree to spot sequences on extra long branches that I deemed as
+# contaminants
+sbatch scripts/ml_16s_tbas.sh
+# Re-align the 16s sequences after trimming the contaminants
+sbatch scripts/mafft_16s_tbas.sh
+# Trim gaps from alignments using trimal
+# This will write trimmmed alignments to analyses/L746/alignments/single
+sbatch scripts/trimal_L746_subset0_ng.sh
+# Remove trimal crap from headers
+sbatch scripts/fix_headers_L746_subset0.sh
+# Get codon partition file for nucleotide alignments
+# Codon partition files will be written to analyses/L746/alignments/single/${locus}_ng_Cpart
+scripts/get_codon_partition_L746_subset0.sh
