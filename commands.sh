@@ -566,9 +566,13 @@ sbatch scripts/compile_align_16s_tbas.sh
 sbatch scripts/ml_16s_tbas.sh
 # Re-align the 16s sequences after trimming the contaminants
 sbatch scripts/mafft_16s_tbas.sh
+# Generate file with list of loci used for TBAS
+ls analyses/tbas/alignments/single/*aln.fna | \
+ sed "s|analyses/tbas/alignments/single/||" | \
+ sed "s|_aln.fna||" > misc_files/tbas_loci.txt
 # Trim gaps from alignments using trimal
-# This will write trimmmed alignments to analyses/L746/alignments/single
-sbatch scripts/trimal_L746_subset0_ng.sh
+# This will write trimmmed alignments to analyses/tbas/alignments/single
+sbatch scripts/trimal_tbas_ng.sh
 # Remove trimal crap from headers
 sbatch scripts/fix_headers_L746_subset0.sh
 # Get codon partition file for nucleotide alignments
