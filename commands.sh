@@ -574,7 +574,11 @@ ls analyses/tbas/alignments/single/*aln.fna | \
 # This will write trimmmed alignments to analyses/tbas/alignments/single
 sbatch scripts/trimal_tbas_ng.sh
 # Remove trimal crap from headers
-sbatch scripts/fix_headers_L746_subset0.sh
-# Get codon partition file for nucleotide alignments
-# Codon partition files will be written to analyses/L746/alignments/single/${locus}_ng_Cpart
-scripts/get_codon_partition_L746_subset0.sh
+sbatch scripts/fix_headers_tbas.sh
+# Concatenate nucleotide dataset
+sbatch scripts/concatenate_tbas_na.sh
+# Get codon partition file for na concat
+# Edit the partition 
+sbatch scripts/get_codon_partition_tbas.sh
+# Find best partition scheme
+sbatch scripts/concat_pf_tbas.sh
