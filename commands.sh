@@ -578,7 +578,9 @@ sbatch scripts/fix_headers_tbas.sh
 # Concatenate nucleotide dataset
 sbatch scripts/concatenate_tbas_na.sh
 # Get codon partition file for na concat
-# Edit the partition 
+# Edit the partition file so 16S is on a single partition
 sbatch scripts/get_codon_partition_tbas.sh
-# Find best partition scheme
+# Find best partition scheme and models
 sbatch scripts/concat_pf_tbas.sh
+# Infer ML tree for tbas with best partition scheme and na data
+sbatch scripts/tbas_concat_pfml_ng_na.sh
