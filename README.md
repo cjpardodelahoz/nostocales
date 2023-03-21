@@ -13,7 +13,7 @@ _**Disclaimer**: This was the first genomic scale project that I worked on. I st
 
 ## The Data
 
-The data and output from all analyses are deposited in a **[Dryad Repository](https://doi.org/10.5061/dryad.tht76hf1p)**. You can download the `data.zip` file. **WARNING: the contents of this archive will take ~69 Gb of space when decompressed**. The only files we did not include where the raw outputs from the posterior sampling donde with PhyloBayes, because it would double the size of this-already huge-repository. However, the posterior samples from this analyses are summarized in the files under `analyses/phylonetworks/bucky/infiles/`. Please feel free to conctact me at if you want access to the raw outputs. The rest of it is organized as follows:
+The data and output from all analyses are deposited in a **[Dryad Repository](https://doi.org/10.5061/dryad.tht76hf1p)**. You can download the `data.zip` file. **WARNING: the contents of this archive will take ~69 Gb of space when decompressed**. The only files we did not include where the raw outputs from the posterior sampling done with PhyloBayes, because it would double the size of this-already huge-repository. However, the posterior samples from this analyses are summarized in the files under `analyses/phylonetworks/bucky/infiles/`. Please feel free to conctact me at *cjpadodelahoz[at]gmail.com* if you want access to the raw outputs. The rest of it is organized as follows:
 
 *   `genomes/`: Contains the assemblies of all 220 genomes that we used in the study in fasta format. These assemblies were the starting point for all analyses.
 *   `databases/`: Contains the blast database used by mafft-homologs during the alignments of the amino acid sequences.
