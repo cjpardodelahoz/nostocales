@@ -3,7 +3,8 @@
 # Computational workflow used in our study on phylogenomics of Nostocales
 
 
-This repository contains all the code used in our study (Pardo-De la Hoz et. al., 2023) of phylogentic conflicts in nostocalean cyanobacteria, where we showed that an ancient rapid radiation explains most phylogenetic conflicts in the relationships among the major lineages of this order. The paper is now out in [*Systematic Biology* as Advanced Access](https://academic.oup.com/sysbio/advance-article/doi/10.1093/sysbio/syad008/7056769?utm_source=authortollfreelink&utm_campaign=sysbio&utm_medium=email&guestAccessKey=c4c50c6f-63b4-47a9-b21f-188440ca64c1).
+This repository contains all the code used in our study (Pardo-De la Hoz et. al., 2023) of phylogentic conflicts in nostocalean cyanobacteria, where we showed that an ancient rapid radiation explains most phylogenetic conflicts in the relationships among the major lineages of this order. The paper is now out in [*Systematic Biology*](https://doi.org/10.1093/sysbio/syad008).
+
 ## The code
 The file `commands.sh` has the full workflow with calls to all the scripts in the `scripts/` directory. This file was basically my logbook while I was doing the project. It is a reference to navigate the scripts, and has everything needed to replicate the study.
 
