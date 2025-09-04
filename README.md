@@ -5,11 +5,7 @@
 
 This repository contains all the code used in our study (Pardo-De la Hoz et. al., 2023) of phylogentic conflicts in nostocalean cyanobacteria, where we showed that an ancient rapid radiation explains most phylogenetic conflicts in the relationships among the major lineages of this order. The paper is now out in [*Systematic Biology* as Advanced Access](https://academic.oup.com/sysbio/advance-article/doi/10.1093/sysbio/syad008/7056769?utm_source=authortollfreelink&utm_campaign=sysbio&utm_medium=email&guestAccessKey=c4c50c6f-63b4-47a9-b21f-188440ca64c1).
 ## The code
-The file `commands.sh` has the full workflow with calls to all the scripts in the `scripts/` directory. This file was basically my logbook while I was doing the project. It is a reference to navigate the scripts, and has everything needed to replicate the study. 
-
-I am also putting together a **[project website](https://cjpardodelahoz.github.io/nostocales/)** where I will have a more detailed and reader-friendly breakdown of the workflow and computational setup that I used. Hopefully this will be helpful for people trying to do similar analyses.
-
-_**Disclaimer**: This was the first genomic scale project that I worked on. I started in 2020 and continued until late 2022. I didn't have formal training in computational biology or programming, and I have been learning and adopting good coding practices through the whole process. You will see this reflected in some of the scripts I used for this study. In some cases, I reorganized or re-wrote parts of my scripts so that they were easier to follow. However, some parts may still be a little clunky, albeit still functional. The **[project website](https://cjpardodelahoz.github.io/nostocales/)** is one more attempt to make everything as clear, transparent as possible, but feel free to contact me if something is not clear or doesn't work they way it's suposed to._
+The file `commands.sh` has the full workflow with calls to all the scripts in the `scripts/` directory. This file was basically my logbook while I was doing the project. It is a reference to navigate the scripts, and has everything needed to replicate the study.
 
 ## The Data
 
